@@ -40,6 +40,8 @@ function playRound(humanChoice,computerChoice){
 
     if (humanChoice == computerChoice){
         alert ("It's a Draw")
+        alert (`Your score is :${humanScore}`)
+        alert (`Computer score is : ${computerScore}`)
     }
 
     else if (humanChoice == "rock" && computerChoice == "scissors" ||
@@ -48,6 +50,8 @@ function playRound(humanChoice,computerChoice){
 
                 alert ("You Win")
                 humanScore++
+                alert (`Your score is :${humanScore}`)
+                alert (`Computer score is : ${computerScore}`)
             }
     else if (humanChoice == "rock" && computerChoice == "paper" ||
             humanChoice == "paper" && computerChoice == "scissors" ||
@@ -55,6 +59,8 @@ function playRound(humanChoice,computerChoice){
 
                 alert ("You lose")
                 computerScore++
+                alert (`Your score is :${humanScore}`)
+                alert (`Computer score is : ${computerScore}`)
             }
     else {
             alert ("Enter rock/paper/scissors only")       
