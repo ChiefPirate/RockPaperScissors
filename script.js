@@ -1,3 +1,21 @@
+const buttonContainer = document.querySelector("#container");
+const userdisplay = document.querySelector("#userdisplay");
+const computerdisplay = document.querySelector("#computerdisplay");
+const winnerdisplay = document.querySelector("#winnerdisplay");
+
+const rockButton = document.querySelector("#rock");
+rockButton.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+})
+const paperButton = document.querySelector("#paper");
+paperButton.addEventListener("click", () => {
+    playRound("paper", getComputerChoice())
+})
+const scissorsButton = document.querySelector("#scissors");
+scissorsButton.addEventListener("click", () => {
+    playRound("scissors", getComputerChoice())
+})
+
 function getComputerChoice(){
     let computerInput = Math.floor(Math.random()*3)
     
@@ -13,69 +31,57 @@ function getComputerChoice(){
         return "scissors"
     }
 }
-
-function getHumanChoice(){
-
-    let userInput = prompt("Rock, Paper or Scissors").toLowerCase()
-    return userInput
-}
-
-let humanScore = 0
-let computerScore = 0
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(humanChoice,computerChoice){
 
-    alert (computerChoice)
+    alert (`computer's choice : ${computerChoice}`)
 
     if (humanChoice == computerChoice){
         alert ("It's a Draw")
-        alert (`Your score is :${humanScore}`)
-        alert (`Computer score is : ${computerScore}`)
+        userdisplay.textContent = `Your score :${humanScore}`
+        computerdisplay.textContent = `Computer score :${computerScore}`
     }
 
     else if (humanChoice == "rock" && computerChoice == "scissors" ||
             humanChoice == "paper" && computerChoice == "rock" ||
             humanChoice == "scissors" && computerChoice == "paper"){
 
-                alert ("You Win")
-                humanScore++
-                alert (`Your score is :${humanScore}`)
-                alert (`Computer score is : ${computerScore}`)
+            alert ("You Win")
+            humanScore++
+            userdisplay.textContent = `Your score :${humanScore}`
+            computerdisplay.textContent = `Computer score :${computerScore}`
             }
     else if (humanChoice == "rock" && computerChoice == "paper" ||
             humanChoice == "paper" && computerChoice == "scissors" ||
             humanChoice == "scissors" && computerChoice == "rock"){
 
-                alert ("You lose")
-                computerScore++
-                alert (`Your score is :${humanScore}`)
-                alert (`Computer score is : ${computerScore}`)
+            alert ("You lose")
+            computerScore++
+            userdisplay.textContent = `Your score :${humanScore}`
+            computerdisplay.textContent = `Computer score :${computerScore}`
             }
     else {
             alert ("Enter rock/paper/scissors only")       
     }
+
+    if (humanScore == 5 || computerScore == 5){
+        if(humanScore>computerScore){
+            winnerdisplay.textContent  = "You are the winner"
+        }
+        else if (humanScore < computerScore){
+             winnerdisplay.textContent  = "Computer is the winner"
+        }
+        else if (humanScore == computerScore){
+            winnerdisplay.textContent  = "Nobody wins"
+        }
+    humanScore = 0;
+    computerScore = 0;
+    }
 }
 
 
-function playGame(){
-    for (let i=1;i<=5;i++)
-    playRound(getHumanChoice(), getComputerChoice())
-    alert (`Your score is :${humanScore}`)
-    alert (`Computer score is : ${computerScore}`)
-}
-
-
-playGame()
 
 
 
-if (humanScore == computerScore){
-    alert ("It's a draw")
-}
-if (humanScore > computerScore){
-    alert ("You Win the game")
-}
-
-if (humanScore < computerScore){
-    alert ("You Lose the game")
-}
